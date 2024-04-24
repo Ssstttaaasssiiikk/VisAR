@@ -12,5 +12,5 @@ app.get('/', (req, res) =>{
 });
 
 app.listen(8080, () => {
-    console.log('пидорас работает')
+    console.log('Сервер работает')
 });

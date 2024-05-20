@@ -31,11 +31,11 @@
     <canvas class="a-canvas" data-aframe-canvas="true" width="300" height="150"></canvas>
     <a-marker camera="active:false" type="pattern" preset="hiro" visible="false" material="" arjs-anchor="" arjs-hit-testing="">
       <a-entity id="vk" class="clickable" position="-2 0 0" rotation="-90 0 0" scale="0.6 0.6 0.6"
-        material="shader:portal;side:double;visible:false" event-set__click="_onmousedown: ; _target: #vk; _delay: 0; _color: #24CAFF;">
+        material="shader:portal;side:double;visible:false" event-set__click="_event: onmousedown; _target: #vk; _delay: 0; _color: #24CAFF;">
         <a-image src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/VK_Compact_Logo_%282021-present%29.svg/2048px-VK_Compact_Logo_%282021-present%29.svg.png" width="2" height="2"></a-image>
       </a-entity>
       <a-entity id="telegram" class="clickable" position="2 0 0" rotation="-90 0 0" scale="0.6 0.6 0.6"
-        material="shader:portal;side:double;visible:false" event-set__click="_onmousedown: click; _target: #telegram; _delay: 0; _color: #24CAFF;">
+        material="shader:portal;side:double;visible:false" event-set__click="_event: onmousedown; _target: #telegram; _delay: 0; _color: #24CAFF;">
         <a-image src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Telegram_2019_Logo.svg/2048px-Telegram_2019_Logo.svg.png" width="2" height="2"></a-image>
       </a-entity>
     </a-marker>

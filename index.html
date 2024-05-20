@@ -1,34 +1,71 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
-    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+  <title>VisAR</title>
+  <meta name="description" content="Textures - A-Frame School">
+  <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
+  <script src="https://unpkg.com/aframe-animation-component@3.2.1/dist/aframe-animation-component.min.js"></script>
+  <script src="https://unpkg.com/aframe-particle-system-component@1.0.x/dist/aframe-particle-system-component.min.js"></script>
+  <script src="https://unpkg.com/aframe-outline@%5E1.1.0/build/aframe-outline.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+
+  <script src="https://unpkg.com/aframe-text-geometry-component@^0.5.0/dist/aframe-text-geometry-component.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto%7CRoboto+Mono" media="all" />
+  <link rel="stylesheet" type="text/css" href="cardstyle.css">
+
+  <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.6.0/aframe/build/aframe-ar.js"></script>
+  <link rel="shortcut icon" href="../../assets/img/icons/favicon.ico" type="image/x-icon" />
+  <script type="text/javascript">
+    let checkExist = setInterval(function() {
+      if (document.getElementById("arjsDebugUIContainer")) {
+        let interface = document.getElementById("arjsDebugUIContainer");
+        interface.remove();
+      }
+    }, 100);
+    checkExist;
+  </script>
 </head>
-<body>
-    <a-scene embedded arjs vr-mode-ui="enabled: false">
-        <a-marker preset="hiro" id="marker">
-            <a-image 
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/VK_Compact_Logo_%282021-present%29.svg/220px-VK_Compact_Logo_%282021-present%29.svg.png"
-            cursor="fuse: false;"
-            position="0 0 -2"
-            width = "1"
-            height = '1'
-            rotation="-90 0 0" 
-            id="vkButton"
-            link = "href:https://vk.com/"
-            ></a-image>
-            <a-image 
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Telegram_2019_Logo.svg/1024px-Telegram_2019_Logo.svg.png"
-                cursor="fuse: false;"
-                position="-2 0 -2"
-                width = "1"
-                height = '1'
-                rotation="-90 0 0" 
-                id="telegramButton"
-                link = "href:https://telegram.org/"
-            ></a-image>
-        </a-marker>
-        <a-entity camera cursor="fuse: false; rayOrigin: mouse;" raycaster="objects: .intersectable;"></a-entity>
-    </a-scene>
+
+<body style="margin : 0px; overflow: hidden;">
+  <a-scene embedded arjs="sourceType: webcam;" inspector="" keyboard-shortcuts="" screenshot="" vr-mode-ui="" aframe-inspector-removed-embedded="undefined">
+    <canvas class="a-canvas" data-aframe-canvas="true" width="300" height="150"></canvas>
+    <a-marker camera="active:false" type="pattern" preset="hiro" visible="false" material="" arjs-anchor="" arjs-hit-testing="">
+      <a-link class="clickable" id="vk" href="https://vk.com/roman_gramor" title="" image="" position="-2 0 0" rotation="-90 0 0" scale="0.6 0.6 0.6" 
+        material="shader:portal;side:double;visible:false" link="title:.">
+        <a-image src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/VK_Compact_Logo_%282021-present%29.svg/2048px-VK_Compact_Logo_%282021-present%29.svg.png" width = "2" height = '2'></a-image>
+      </a-link>
+      <a-link class="clickable" id="telegram" href="https://t.me/romangramor" title="" image="" position="2 0 0" rotation="-90 0 0" scale="0.6 0.6 0.6"
+        material="shader:portal;side:double;visible:false" link="title:.">
+        <a-image src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Telegram_2019_Logo.svg/2048px-Telegram_2019_Logo.svg.png" width = "2" height = '2'></a-image>
+      </a-link>
+    </a-marker>
+
+    <a-entity camera="" position="" rotation="" scale="" visible=""></a-entity>
+    <a-entity cursor="fuse: true; fuseTimeout: 2000" raycaster="objects: .clickable" position="0 0 -1" scale="0.01 0.01 0.01" geometry="primitive: ring" material="color: white; shader: flat" rotation="" visible="">
+      <a-animation begin="fusing" easing="ease-in" attribute="scale" fill="backwards" from="0.01 0.01 0.01" to="0.02 0.02 0.02" dur="3000"></a-animation>
+      <a-animation begin="fusing" easing="ease-in" attribute="material.color" from="white" to="blue" dur="3000"></a-animation>
+    </a-entity>
+  </a-scene>
+
+  <script type="text/javascript">
+    var gotitBtn = $(".gotit");
+    gotitBtn.click(function() {
+      gotitBtn.parent().css({
+        display: "none"
+      });
+    });
+    //Camera feature check
+    function hasGetUserMedia() {
+      return !!(navigator.getUserMedia || navigator.webkitGetUserMedia ||
+        navigator.mozGetUserMedia || navigator.msGetUserMedia);
+    }
+    if (hasGetUserMedia()) {
+      $('#splashScreen').css('display', 'block');
+    }
+  </script>
+
 </body>
+
 </html>
